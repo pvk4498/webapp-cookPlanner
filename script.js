@@ -1,386 +1,389 @@
 
-        // Use window.jsPDF for ES Module in browser
-        const { jsPDF } = window.jspdf;
+// Use window.jsPDF for ES Module in browser
+const { jsPDF } = window.jspdf;
 
-        // --- DOM Elements ---
-        const homeLink = document.getElementById('home-link');
-        const aboutLink = document.getElementById('about-link');
-        const homeSection = document.getElementById('home-section');
-        const aboutSection = document.getElementById('about-section');
-        const tableBody = document.getElementById('table-body');
-        const addItemBtn = document.getElementById('add-item-btn');
-        const downloadPdfBtn = document.getElementById('download-pdf-btn');
-        const downloadImageBtn = document.getElementById('download-image-btn');
-        const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');
-        const ingredientTable = document.getElementById('ingredient-table');
-        const categoryButtonsContainer = document.getElementById('category-buttons');
+// --- DOM Elements ---
+const homeLink = document.getElementById('home-link');
+const aboutLink = document.getElementById('about-link');
+const homeSection = document.getElementById('home-section');
+const aboutSection = document.getElementById('about-section');
+const tableBody = document.getElementById('table-body');
+const addItemBtn = document.getElementById('add-item-btn');
+const downloadPdfBtn = document.getElementById('download-pdf-btn');
+const downloadImageBtn = document.getElementById('download-image-btn');
+const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');
+const ingredientTable = document.getElementById('ingredient-table');
+const categoryButtonsContainer = document.getElementById('category-buttons');
 
-        // --- Data Model ---
-        let categories = {
-            'Vegetables': [
-                { id: 1, item: 'Onions', unit: 'kg', quantity: 0 },
-                { id: 2, item: 'Potatoes', unit: 'kg', quantity: 0 },
-                { id: 3, item: 'Tomatoes', unit: 'kg', quantity: 0 },
-                { id: 4, item: 'Green Chilies', unit: 'kg', quantity: 0 },
-                { id: 16, item: 'Ginger', unit: 'kg', quantity: 0 },
-                { id: 17, item: 'Garlic', unit: 'kg', quantity: 0 },
-            ],
-            'Masalas': [
-                { id: 5, item: 'Mixed Spices (Masala)', unit: 'kg', quantity: 0 },
-                { id: 6, item: 'Salt', unit: 'kg', quantity: 0 },
-                { id: 7, item: 'Sugar', unit: 'kg', quantity: 0 },
-                { id: 18, item: 'Turmeric Powder', unit: 'kg', quantity: 0 },
-                { id: 19, item: 'Chilli Powder', unit: 'kg', quantity: 0 },
-                { id: 20, item: 'Coriander Powder', unit: 'kg', quantity: 0 },
-            ],
-            'Dals & Grains': [
-                { id: 8, item: 'Rice', unit: 'kg', quantity: 0 },
-                { id: 9, item: 'Wheat Flour', unit: 'kg', quantity: 0 },
-                { id: 10, item: 'Lentils (Toor Dal)', unit: 'kg', quantity: 0 },
-                { id: 21, item: 'Moong Dal', unit: 'kg', quantity: 0 },
-                { id: 22, item: 'Basmati Rice', unit: 'kg', quantity: 0 },
-            ],
-            'Dairy & Oil': [
-                { id: 11, item: 'Cooking Oil', unit: 'liter', quantity: 0 },
-                { id: 12, item: 'Paneer (Cottage Cheese)', unit: 'kg', quantity: 0 },
-                { id: 13, item: 'Curd (Yogurt)', unit: 'kg', quantity: 0 },
-                { id: 14, item: 'Ghee', unit: 'liter', quantity: 0 },
-                { id: 23, item: 'Milk', unit: 'liter', quantity: 0 },
-            ],
-            'Other': [
-                { id: 15, item: 'Lemon', unit: 'units', quantity: 0 },
-                { id: 24, item: 'Coriander Leaves', unit: 'kg', quantity: 0 },
-                { id: 25, item: 'Curry Leaves', unit: 'g', quantity: 0 },
-                { id: 26, item: 'Coconut', unit: 'units', quantity: 0 },
-            ]
-        };
+// --- Data Model ---
+let categories = {
+    'भाजीपाला ': [
+        { id: 1, item: 'कांदा', unit: 'kg', quantity: 0 }, // Onions
+        { id: 2, item: 'बटाटा', unit: 'kg', quantity: 0 }, // Potatoes
+        { id: 3, item: 'टोमॅटो', unit: 'kg', quantity: 0 }, // Tomatoes
+        { id: 4, item: 'हिरवी मिरची', unit: 'kg', quantity: 0 }, // Green Chilies
+        { id: 16, item: 'आले', unit: 'kg', quantity: 0 }, // Ginger
+        { id: 17, item: 'लसूण', unit: 'kg', quantity: 0 }, // Garlic
+    ],
+    'मसाले ': [
+        { id: 8, item: 'भात', unit: 'kg', quantity: 0 }, // Rice
+        { id: 9, item: 'गहू पीठ', unit: 'kg', quantity: 0 }, // Wheat Flour
+        { id: 10, item: 'तूर डाळ', unit: 'kg', quantity: 0 }, // Lentils (Toor Dal)
+        { id: 21, item: 'मूग डाळ', unit: 'kg', quantity: 0 }, // Moong Dal
+        { id: 22, item: 'बासमती तांदूळ', unit: 'kg', quantity: 0 }, // Basmati Rice
+    ],
+    'धान्य ': [
+        { id: 11, item: 'खाद्यतेल', unit: 'liter', quantity: 0 }, // Cooking Oil
+        { id: 12, item: 'पनीर', unit: 'kg', quantity: 0 }, // Paneer (Cottage Cheese)
+        { id: 13, item: 'दही', unit: 'kg', quantity: 0 }, // Curd (Yogurt)
+        { id: 14, item: 'तूप', unit: 'liter', quantity: 0 }, // Ghee
+        { id: 23, item: 'दूध', unit: 'liter', quantity: 0 }, // Milk
+    ],
+    'डेअरी व तेल': [
+        { id: 15, item: 'लिंबू', unit: 'units', quantity: 0 }, // Lemon
+        { id: 24, item: 'कोथिंबीर', unit: 'kg', quantity: 0 }, // Coriander Leaves
+        { id: 25, item: 'कढीपत्ता', unit: 'g', quantity: 0 }, // Curry Leaves
+        { id: 26, item: 'नारळ', unit: 'units', quantity: 0 }, // Coconut
+    ],
+    'इतर ': [
+        { id: 15, item: 'लिंबू', unit: 'units', quantity: 0 }, // Lemon
+        { id: 24, item: 'कोथिंबीर', unit: 'kg', quantity: 0 }, // Coriander Leaves
+        { id: 25, item: 'कढीपत्ता', unit: 'g', quantity: 0 }, // Curry Leaves
+        { id: 26, item: 'नारळ', unit: 'units', quantity: 0 }, // Coconut
+        { id: 27, item: 'चिंच', unit: 'kg', quantity: 0 }, // Tamarind
+        { id: 28, item: 'गूळ', unit: 'kg', quantity: 0 }, // Jaggery
+        { id: 29, item: 'शेंगदाणे', unit: 'kg', quantity: 0 }, // Peanuts
+        { id: 30, item: 'ओले वाटाणे', unit: 'kg', quantity: 0 }, // Green Peas
+        { id: 31, item: 'किसलेले खोबरे', unit: 'g', quantity: 0 }, // Grated Coconut (dry)
+        { id: 32, item: 'कढीपत्ता (सुकलेला)', unit: 'g', quantity: 0 }, // Dried Curry Leaves
+    ]
+};
 
-        // Determine the highest ID across all categories to ensure unique IDs for new items
-        let nextId = 0;
-        for (const category in categories) {
-            categories[category].forEach(item => {
-                if (item.id > nextId) {
-                    nextId = item.id;
-                }
-            });
+// Determine the highest ID across all categories to ensure unique IDs for new items
+let nextId = 0;
+for (const category in categories) {
+    categories[category].forEach(item => {
+        if (item.id > nextId) {
+            nextId = item.id;
         }
-        nextId++; // Increment to get the next available ID
+    });
+}
+nextId++; // Increment to get the next available ID
 
-        let currentCategory = 'Vegetables'; // Default category to display
+let currentCategory = 'भाजीपाला'; // Default category to display
 
-        // --- Functions ---
+// --- Functions ---
 
-        /**
-         * Renders the category buttons dynamically.
-         */
-        function renderCategoryButtons() {
-            categoryButtonsContainer.innerHTML = '';
-            for (const categoryName in categories) {
-                const button = document.createElement('button');
-                button.textContent = categoryName;
-                button.classList.add('category-button', 'bg-blue-200', 'text-blue-800', 'font-semibold', 'py-2', 'px-4', 'rounded-lg', 'shadow-md', 'hover:bg-blue-300', 'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-500', 'focus:ring-opacity-50');
-                button.dataset.category = categoryName;
-                if (categoryName === currentCategory) {
-                    button.classList.add('active');
-                }
-                button.addEventListener('click', () => {
-                    currentCategory = categoryName;
-                    renderCategoryButtons(); // Re-render buttons to update active state
-                    renderTable(); // Re-render table for the selected category
-                });
-                categoryButtonsContainer.appendChild(button);
-            }
+/**
+ * Renders the category buttons dynamically.
+ */
+function renderCategoryButtons() {
+    categoryButtonsContainer.innerHTML = '';
+    for (const categoryName in categories) {
+        const button = document.createElement('button');
+        button.textContent = categoryName;
+        button.classList.add('category-button', 'bg-blue-200', 'text-blue-800', 'font-semibold', 'py-2', 'px-2', 'rounded-lg', 'shadow-md', 'hover:bg-blue-300', 'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-500', 'focus:ring-opacity-50');
+        button.dataset.category = categoryName;
+        if (categoryName === currentCategory) {
+            button.classList.add('active');
         }
+        button.addEventListener('click', () => {
+            currentCategory = categoryName;
+            renderCategoryButtons(); // Re-render buttons to update active state
+            renderTable(); // Re-render table for the selected category
+        });
+        categoryButtonsContainer.appendChild(button);
+    }
+}
 
-        /**
-         * Renders all ingredient rows for the current category in the table.
-         */
-        function renderTable() {
-            tableBody.innerHTML = ''; // Clear existing rows
-            const itemsToDisplay = categories[currentCategory] || [];
+/**
+ * Renders all ingredient rows for the current category in the table.
+ */
+function renderTable() {
+    tableBody.innerHTML = ''; // Clear existing rows
+    const itemsToDisplay = categories[currentCategory] || [];
 
-            if (itemsToDisplay.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="3" class="py-4 text-center text-gray-500">No items in this category. Add a custom item!</td></tr>`;
-                return;
-            }
+    if (itemsToDisplay.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="3" class="py-4 text-center text-gray-500">No items in this category. Add a custom item!</td></tr>`;
+        return;
+    }
 
-            itemsToDisplay.forEach((item, index) => {
-                const row = document.createElement('tr');
-                row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd', 'hover:bg-gray-100');
-                row.dataset.id = item.id;
-                row.dataset.category = currentCategory; // Store category on row for updates
+    itemsToDisplay.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd', 'hover:bg-gray-100');
+        row.dataset.id = item.id;
+        row.dataset.category = currentCategory; // Store category on row for updates
 
-                row.innerHTML = `
-                    <td class="py-3 px-4 border-b border-gray-200">
+        row.innerHTML = `
+                    <td class="py-2 px-2 border-b border-gray-200 w-[55%]">
                         <input type="text" value="${item.item}" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 item-input" data-field="item">
                     </td>
-                    <td class="py-3 px-4 border-b border-gray-200 flex items-center space-x-2">
-                        <input type="number" step="0.01" value="${item.quantity}" class="w-2/3 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 quantity-input" data-field="quantity">
-                        <input type="text" value="${item.unit}" class="w-1/3 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 unit-input" data-field="unit">
+                    <td class="py-2 px-1 border-b border-gray-200 flex items-center space-x-2 w-[100%]">
+                        <input type="number" step="0.01" value="${item.quantity}" class="w-[60%] p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 quantity-input" data-field="quantity">
+                        <input type="text" value="${item.unit}" class="w-[40%] p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 unit-input" data-field="unit">
                     </td>
-                    <td class="py-3 px-4 border-b border-gray-200 w-[10%]">
+                    <td class="py-2 px-1 border-b border-gray-200 w-1/10">
                         <button class="remove-item-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">-</button>
                     </td>
                 `;
-                tableBody.appendChild(row);
+        tableBody.appendChild(row);
+    });
+}
+
+/**
+ * Adds a new, empty ingredient row to the currently selected category.
+ */
+function addNewItem() {
+    if (!categories[currentCategory]) {
+        // If for some reason currentCategory is not defined, default to 'Other'
+        currentCategory = 'Other';
+        if (!categories['Other']) {
+            categories['Other'] = [];
+        }
+    }
+    categories[currentCategory].push({
+        id: nextId++,
+        item: 'New Custom Item',
+        unit: 'units', // Default unit for new items
+        quantity: 0
+    });
+    renderTable();
+}
+
+/**
+ * Updates an ingredient's property in the data model for the correct category.
+ * @param {number} id - The ID of the ingredient to update.
+ * @param {string} categoryName - The category the item belongs to.
+ * @param {string} field - The field to update (e.g., 'item', 'quantity', 'unit').
+ * @param {string|number} value - The new value for the field.
+ */
+function updateIngredient(id, categoryName, field, value) {
+    const categoryItems = categories[categoryName];
+    if (!categoryItems) return;
+
+    const itemIndex = categoryItems.findIndex(item => item.id === id);
+    if (itemIndex !== -1) {
+        if (field === 'quantity') {
+            categoryItems[itemIndex][field] = parseFloat(value) || 0;
+        } else {
+            categoryItems[itemIndex][field] = value;
+        }
+        // No need to re-render table for every input change if just updating data model,
+        // only if display needs to change (e.g., total calculations, which are now removed)
+    }
+}
+
+/**
+ * Removes an ingredient from the data model for the correct category.
+ * @param {number} id - The ID of the ingredient to remove.
+ * @param {string} categoryName - The category the item belongs to.
+ */
+function removeItem(id, categoryName) {
+    if (!categories[categoryName]) return;
+    categories[categoryName] = categories[categoryName].filter(item => item.id !== id);
+    renderTable(); // Re-render the table for the current category
+}
+
+/**
+ * Handles tab navigation.
+ * @param {string} sectionId - The ID of the section to show.
+ */
+function showSection(sectionId) {
+    homeSection.classList.add('hidden');
+    aboutSection.classList.add('hidden');
+
+    if (sectionId === 'home') {
+        homeSection.classList.remove('hidden');
+    } else if (sectionId === 'about') {
+        aboutSection.classList.remove('hidden');
+    }
+}
+
+/**
+ * Downloads the currently displayed ingredient table as a PDF.
+ */
+async function downloadPdf() {
+    const contentToPrint = generateAllCategoriesHtml();
+    document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
+
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const canvas = await html2canvas(contentToPrint, { scale: 2 });
+    const imgData = canvas.toDataURL('image/png');
+
+    const imgWidth = 595.28;
+    const pageHeight = 841.89;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+    }
+
+    doc.save('cook_full_ingredient_list.pdf');
+    document.body.removeChild(contentToPrint); // Remove temporary element
+}
+/**
+ * Downloads the currently displayed ingredient table as an image (PNG).
+ */
+async function downloadImage() {
+    const contentToPrint = generateAllCategoriesHtml();
+    document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
+
+    const canvas = await html2canvas(contentToPrint, { scale: 2 });
+    const imgData = canvas.toDataURL('image/png');
+
+    const link = document.createElement('a');
+    link.href = imgData;
+    link.download = 'cook_full_ingredient_list.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link); // Remove temporary element
+}
+
+/**
+ * Shares the budget details via WhatsApp Web.
+ * Note: Direct file attachment is not supported via simple web links.
+ * User will need to manually share the downloaded PDF/Image.
+ */
+function shareWhatsapp() {
+    let message = `Hello! Here's your complete ingredient list:\n\n`;
+
+    for (const categoryName in categories) {
+        const items = categories[categoryName];
+        const categoryItemsPresent = items.some(item => item.quantity > 0);
+
+        if (categoryItemsPresent) { // Only include category if it has items with quantity > 0
+            message += `--- ${categoryName} ---\n`;
+            items.forEach(item => {
+                if (item.quantity > 0) {
+                    message += `- ${item.item}: ${item.quantity} ${item.unit}\n`;
+                }
             });
+            message += `\n`; // Add a new line after each category for readability
+        }
+    }
+
+    if (message === `Hello! Here's your complete ingredient list:\n\n`) {
+        message += `(No items with quantities specified across all categories.)`;
+    }
+
+    message += `\nFor a structured view, please refer to the downloaded PDF/Image.`;
+
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+function generateAllCategoriesHtml() {
+    const tempDiv = document.createElement('div');
+    tempDiv.classList.add('p-6', 'bg-white', 'rounded-lg', 'shadow-xl'); // Basic styling for the container
+    tempDiv.style.width = '700px'; // Fixed width for consistent PDF/image generation
+
+    const title = document.createElement('h2');
+    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-6', 'text-gray-800');
+    title.textContent = 'Consolidated Ingredient List';
+    tempDiv.appendChild(title);
+
+    for (const categoryName in categories) {
+        const items = categories[categoryName];
+        if (items.length === 0 || items.every(item => item.quantity === 0)) {
+            // Skip categories with no items or all zero quantities
+            continue;
         }
 
-        /**
-         * Adds a new, empty ingredient row to the currently selected category.
-         */
-        function addNewItem() {
-            if (!categories[currentCategory]) {
-                // If for some reason currentCategory is not defined, default to 'Other'
-                currentCategory = 'Other';
-                if (!categories['Other']) {
-                    categories['Other'] = [];
-                }
+        const categoryHeader = document.createElement('h3');
+        categoryHeader.classList.add('text-xl', 'font-semibold', 'mt-6', 'mb-6', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-1');
+        categoryHeader.textContent = categoryName;
+        tempDiv.appendChild(categoryHeader);
+
+        const categoryTable = document.createElement('table');
+        categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'mb-4');
+
+        // Table Header
+        const thead = categoryTable.createTHead();
+        const headerRow = thead.insertRow();
+        headerRow.classList.add('table-header', 'text-left');
+        const thItem = document.createElement('th');
+        thItem.classList.add('py-2', 'px-3', 'w-1/2'); // Approx 50% for Item
+        thItem.textContent = 'Item';
+        const thQuantity = document.createElement('th');
+        thQuantity.classList.add('py-2', 'px-3', 'w-1/2'); // Approx 50% for Quantity
+        thQuantity.textContent = 'Quantity';
+        headerRow.appendChild(thItem);
+        headerRow.appendChild(thQuantity);
+        categoryTable.appendChild(thead);
+
+        // Table Body
+        const tbody = categoryTable.createTBody();
+        items.forEach((item, index) => {
+            if (item.quantity > 0) { // Only include items with quantity > 0
+                const row = tbody.insertRow();
+                row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd');
+                const tdItem = row.insertCell();
+                tdItem.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200');
+                tdItem.textContent = item.item;
+                const tdQuantity = row.insertCell();
+                tdQuantity.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200');
+                tdQuantity.textContent = `${item.quantity} ${item.unit}`;
             }
-            categories[currentCategory].push({
-                id: nextId++,
-                item: 'New Custom Item',
-                unit: 'units', // Default unit for new items
-                quantity: 0
-            });
-            renderTable();
-        }
+        });
+        categoryTable.appendChild(tbody);
+        tempDiv.appendChild(categoryTable);
+    }
+    return tempDiv;
+}
 
-        /**
-         * Updates an ingredient's property in the data model for the correct category.
-         * @param {number} id - The ID of the ingredient to update.
-         * @param {string} categoryName - The category the item belongs to.
-         * @param {string} field - The field to update (e.g., 'item', 'quantity', 'unit').
-         * @param {string|number} value - The new value for the field.
-         */
-        function updateIngredient(id, categoryName, field, value) {
-            const categoryItems = categories[categoryName];
-            if (!categoryItems) return;
+// --- Event Listeners ---
 
-            const itemIndex = categoryItems.findIndex(item => item.id === id);
-            if (itemIndex !== -1) {
-                if (field === 'quantity') {
-                    categoryItems[itemIndex][field] = parseFloat(value) || 0;
-                } else {
-                    categoryItems[itemIndex][field] = value;
-                }
-                // No need to re-render table for every input change if just updating data model,
-                // only if display needs to change (e.g., total calculations, which are now removed)
-            }
-        }
+// Navigation links
+homeLink.addEventListener('click', () => showSection('home'));
+aboutLink.addEventListener('click', () => showSection('about'));
 
-        /**
-         * Removes an ingredient from the data model for the correct category.
-         * @param {number} id - The ID of the ingredient to remove.
-         * @param {string} categoryName - The category the item belongs to.
-         */
-        function removeItem(id, categoryName) {
-            if (!categories[categoryName]) return;
-            categories[categoryName] = categories[categoryName].filter(item => item.id !== id);
-            renderTable(); // Re-render the table for the current category
-        }
+// Add new item button
+addItemBtn.addEventListener('click', addNewItem);
 
-        /**
-         * Handles tab navigation.
-         * @param {string} sectionId - The ID of the section to show.
-         */
-        function showSection(sectionId) {
-            homeSection.classList.add('hidden');
-            aboutSection.classList.add('hidden');
+// Event delegation for input changes and remove buttons in the table
+tableBody.addEventListener('input', (event) => {
+    const target = event.target;
+    const row = target.closest('tr');
+    if (!row) return;
 
-            if (sectionId === 'home') {
-                homeSection.classList.remove('hidden');
-            } else if (sectionId === 'about') {
-                aboutSection.classList.remove('hidden');
-            }
-        }
+    const id = parseInt(row.dataset.id);
+    const categoryName = row.dataset.category;
+    const field = target.dataset.field; // 'item', 'quantity', 'unit'
 
-        /**
-         * Downloads the currently displayed ingredient table as a PDF.
-         */
-        async function downloadPdf() {
-            const contentToPrint = generateAllCategoriesHtml();
-            document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
-        
-            const doc = new jsPDF('p', 'pt', 'a4');
-            const canvas = await html2canvas(contentToPrint, { scale: 2 });
-            const imgData = canvas.toDataURL('image/png');
-        
-            const imgWidth = 595.28;
-            const pageHeight = 841.89;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-            let heightLeft = imgHeight;
-            let position = 0;
-        
-            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-        
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                doc.addPage();
-                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-            }
-        
-            doc.save('cook_full_ingredient_list.pdf');
-            document.body.removeChild(contentToPrint); // Remove temporary element
-        }
-        /**
-         * Downloads the currently displayed ingredient table as an image (PNG).
-         */
-        async function downloadImage() {
-            const contentToPrint = generateAllCategoriesHtml();
-            document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
-        
-            const canvas = await html2canvas(contentToPrint, { scale: 2 });
-            const imgData = canvas.toDataURL('image/png');
-        
-            const link = document.createElement('a');
-            link.href = imgData;
-            link.download = 'cook_full_ingredient_list.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link); // Remove temporary element
-        }
+    if (field) {
+        updateIngredient(id, categoryName, field, target.value);
+    }
+});
 
-        /**
-         * Shares the budget details via WhatsApp Web.
-         * Note: Direct file attachment is not supported via simple web links.
-         * User will need to manually share the downloaded PDF/Image.
-         */
-        function shareWhatsapp() {
-            let message = `Hello! Here's your complete ingredient list:\n\n`;
-        
-            for (const categoryName in categories) {
-                const items = categories[categoryName];
-                const categoryItemsPresent = items.some(item => item.quantity > 0);
-        
-                if (categoryItemsPresent) { // Only include category if it has items with quantity > 0
-                    message += `--- ${categoryName} ---\n`;
-                    items.forEach(item => {
-                        if (item.quantity > 0) {
-                            message += `- ${item.item}: ${item.quantity} ${item.unit}\n`;
-                        }
-                    });
-                    message += `\n`; // Add a new line after each category for readability
-                }
-            }
-        
-            if (message === `Hello! Here's your complete ingredient list:\n\n`) {
-                message += `(No items with quantities specified across all categories.)`;
-            }
-        
-            message += `\nFor a structured view, please refer to the downloaded PDF/Image.`;
-        
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        function generateAllCategoriesHtml() {
-            const tempDiv = document.createElement('div');
-            tempDiv.classList.add('p-6', 'bg-white', 'rounded-lg', 'shadow-xl'); // Basic styling for the container
-            tempDiv.style.width = '700px'; // Fixed width for consistent PDF/image generation
-        
-            const title = document.createElement('h2');
-            title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-6', 'text-gray-800');
-            title.textContent = 'Consolidated Ingredient List';
-            tempDiv.appendChild(title);
-        
-            for (const categoryName in categories) {
-                const items = categories[categoryName];
-                if (items.length === 0 || items.every(item => item.quantity === 0)) {
-                    // Skip categories with no items or all zero quantities
-                    continue;
-                }
-        
-                const categoryHeader = document.createElement('h3');
-                categoryHeader.classList.add('text-xl', 'font-semibold', 'mt-6', 'mb-3', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-1');
-                categoryHeader.textContent = categoryName;
-                tempDiv.appendChild(categoryHeader);
-        
-                const categoryTable = document.createElement('table');
-                categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'mb-4');
-        
-                // Table Header
-                const thead = categoryTable.createTHead();
-                const headerRow = thead.insertRow();
-                headerRow.classList.add('table-header', 'text-left');
-                const thItem = document.createElement('th');
-                thItem.classList.add('py-2', 'px-3', 'w-1/2'); // Approx 50% for Item
-                thItem.textContent = 'Item';
-                const thQuantity = document.createElement('th');
-                thQuantity.classList.add('py-2', 'px-3', 'w-1/2'); // Approx 50% for Quantity
-                thQuantity.textContent = 'Quantity';
-                headerRow.appendChild(thItem);
-                headerRow.appendChild(thQuantity);
-                categoryTable.appendChild(thead);
-        
-                // Table Body
-                const tbody = categoryTable.createTBody();
-                items.forEach((item, index) => {
-                    if (item.quantity > 0) { // Only include items with quantity > 0
-                        const row = tbody.insertRow();
-                        row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd');
-                        const tdItem = row.insertCell();
-                        tdItem.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200');
-                        tdItem.textContent = item.item;
-                        const tdQuantity = row.insertCell();
-                        tdQuantity.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200');
-                        tdQuantity.textContent = `${item.quantity} ${item.unit}`;
-                    }
-                });
-                categoryTable.appendChild(tbody);
-                tempDiv.appendChild(categoryTable);
-            }
-            return tempDiv;
-        }
-
-        // --- Event Listeners ---
-
-        // Navigation links
-        homeLink.addEventListener('click', () => showSection('home'));
-        aboutLink.addEventListener('click', () => showSection('about'));
-
-        // Add new item button
-        addItemBtn.addEventListener('click', addNewItem);
-
-        // Event delegation for input changes and remove buttons in the table
-        tableBody.addEventListener('input', (event) => {
-            const target = event.target;
-            const row = target.closest('tr');
-            if (!row) return;
-
+tableBody.addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove-item-btn')) {
+        const row = event.target.closest('tr');
+        if (row) {
             const id = parseInt(row.dataset.id);
             const categoryName = row.dataset.category;
-            const field = target.dataset.field; // 'item', 'quantity', 'unit'
+            removeItem(id, categoryName);
+        }
+    }
+});
 
-            if (field) {
-                updateIngredient(id, categoryName, field, target.value);
-            }
-        });
+// Download and Share buttons
+downloadPdfBtn.addEventListener('click', downloadPdf);
+downloadImageBtn.addEventListener('click', downloadImage);
+shareWhatsappBtn.addEventListener('click', shareWhatsapp);
 
-        tableBody.addEventListener('click', (event) => {
-            if (event.target.classList.contains('remove-item-btn')) {
-                const row = event.target.closest('tr');
-                if (row) {
-                    const id = parseInt(row.dataset.id);
-                    const categoryName = row.dataset.category;
-                    removeItem(id, categoryName);
-                }
-            }
-        });
-
-        // Download and Share buttons
-        downloadPdfBtn.addEventListener('click', downloadPdf);
-        downloadImageBtn.addEventListener('click', downloadImage);
-        shareWhatsappBtn.addEventListener('click', shareWhatsapp);
-
-        // --- Initial Load ---
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCategoryButtons(); // Render category buttons initially
-            renderTable(); // Render table for the default category
-            showSection('home'); // Ensure home section is visible by default
-        });
+// --- Initial Load ---
+document.addEventListener('DOMContentLoaded', () => {
+    renderCategoryButtons(); // Render category buttons initially
+    renderTable(); // Render table for the default category
+    showSection('home'); // Ensure home section is visible by default
+});
 
 
-        
