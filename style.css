@@ -1,0 +1,89 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8;
+    color: #2d3748;
+    /* Darker gray for text */
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.header-bg {
+    background-color: #4a5568;
+    /* Dark gray for header */
+}
+
+.nav-link {
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    background-color: #2d3748;
+    /* Even darker on hover */
+}
+
+.btn-primary {
+    background-color: #4299e1;
+    /* Blue */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #3182ce;
+    /* Darker blue */
+}
+
+.btn-secondary {
+    background-color: #63b3ed;
+    /* Light blue */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #4299e1;
+    /* Darker light blue */
+}
+
+.table-header {
+    background-color: #cbd5e0;
+    /* Light gray for table header */
+    color: #2d3748;
+}
+
+.table-row-odd {
+    background-color: #f7fafc;
+    /* Lighter background for odd rows */
+}
+
+.table-row-even {
+    background-color: #edf2f7;
+    /* Slightly darker for even rows */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.category-button {
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.category-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-button.active {
+    background-color: #3182ce;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #63b3ed;
+}
