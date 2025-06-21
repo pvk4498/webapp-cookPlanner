@@ -199,65 +199,48 @@
          * Downloads the currently displayed ingredient table as a PDF.
          */
         async function downloadPdf() {
-            // Temporarily hide actions column for cleaner PDF
-            const actionCells = document.querySelectorAll('#ingredient-table th:last-child, #ingredient-table td:last-child');
-            actionCells.forEach(cell => cell.style.display = 'none');
-
-            // Set specific width for PDF generation (can adjust as needed)
-            ingredientTable.style.width = '700px'; // A wider width for better PDF layout
-
-            const doc = new jsPDF('p', 'pt', 'a4'); // 'p' for portrait, 'pt' for points, 'a4' for A4 size
-            const tableElement = document.getElementById('ingredient-table');
-
-            // Use html2canvas to render the table as an image
-            const canvas = await html2canvas(tableElement, { scale: 2 }); // Scale up for better resolution
+            const contentToPrint = generateAllCategoriesHtml();
+            document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
+        
+            const doc = new jsPDF('p', 'pt', 'a4');
+            const canvas = await html2canvas(contentToPrint, { scale: 2 });
             const imgData = canvas.toDataURL('image/png');
-
-            // Calculate image dimensions to fit PDF page
-            const imgWidth = 595.28; // A4 width in points
-            const pageHeight = 841.89; // A4 height in points
+        
+            const imgWidth = 595.28;
+            const pageHeight = 841.89;
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
             let heightLeft = imgHeight;
             let position = 0;
-
+        
             doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
-
+        
             while (heightLeft >= 0) {
                 position = heightLeft - imgHeight;
                 doc.addPage();
                 doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
             }
-
-            doc.save(`cook_ingredient_list_${currentCategory}.pdf`);
-
-            // Restore original table width and action column
-            ingredientTable.style.width = ''; // Reset to default (or Tailwind classes)
-            actionCells.forEach(cell => cell.style.display = '');
+        
+            doc.save('cook_full_ingredient_list.pdf');
+            document.body.removeChild(contentToPrint); // Remove temporary element
         }
-
         /**
          * Downloads the currently displayed ingredient table as an image (PNG).
          */
         async function downloadImage() {
-            // Temporarily hide actions column for cleaner image
-            const actionCells = document.querySelectorAll('#ingredient-table th:last-child, #ingredient-table td:last-child');
-            actionCells.forEach(cell => cell.style.display = 'none');
-
-            const tableElement = document.getElementById('ingredient-table');
-            const canvas = await html2canvas(tableElement, { scale: 2 }); // Scale up for better resolution
+            const contentToPrint = generateAllCategoriesHtml();
+            document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
+        
+            const canvas = await html2canvas(contentToPrint, { scale: 2 });
             const imgData = canvas.toDataURL('image/png');
-
+        
             const link = document.createElement('a');
             link.href = imgData;
-            link.download = `cook_ingredient_list_${currentCategory}.png`;
+            link.download = 'cook_full_ingredient_list.png';
             document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
-
-            // Restore action column
-            actionCells.forEach(cell => cell.style.display = '');
+            document.body.removeChild(link); // Remove temporary element
         }
 
         /**
@@ -266,26 +249,90 @@
          * User will need to manually share the downloaded PDF/Image.
          */
         function shareWhatsapp() {
-            let message = `Hello! Here's the ingredient list for the "${currentCategory}" category:\n\n`;
-            const itemsToShare = categories[currentCategory] || [];
-
-            if (itemsToShare.length === 0) {
-                message += `No items listed in this category.`;
-            } else {
-                itemsToShare.forEach(item => {
-                    if (item.quantity > 0) {
-                        message += `- ${item.item}: ${item.quantity} ${item.unit}\n`;
-                    }
-                });
-                if (itemsToShare.every(item => item.quantity === 0)) {
-                    message += `(No quantities specified for items in this category.)`;
+            let message = `Hello! Here's your complete ingredient list:\n\n`;
+        
+            for (const categoryName in categories) {
+                const items = categories[categoryName];
+                const categoryItemsPresent = items.some(item => item.quantity > 0);
+        
+                if (categoryItemsPresent) { // Only include category if it has items with quantity > 0
+                    message += `--- ${categoryName} ---\n`;
+                    items.forEach(item => {
+                        if (item.quantity > 0) {
+                            message += `- ${item.item}: ${item.quantity} ${item.unit}\n`;
+                        }
+                    });
+                    message += `\n`; // Add a new line after each category for readability
                 }
             }
-
-            message += `\n\nFor a detailed list including other categories, please refer to the downloaded PDF/Image.`;
-
+        
+            if (message === `Hello! Here's your complete ingredient list:\n\n`) {
+                message += `(No items with quantities specified across all categories.)`;
+            }
+        
+            message += `\nFor a structured view, please refer to the downloaded PDF/Image.`;
+        
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        function generateAllCategoriesHtml() {
+            const tempDiv = document.createElement('div');
+            tempDiv.classList.add('p-6', 'bg-white', 'rounded-lg', 'shadow-xl'); // Basic styling for the container
+            tempDiv.style.width = '700px'; // Fixed width for consistent PDF/image generation
+        
+            const title = document.createElement('h2');
+            title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-6', 'text-gray-800');
+            title.textContent = 'Consolidated Ingredient List';
+            tempDiv.appendChild(title);
+        
+            for (const categoryName in categories) {
+                const items = categories[categoryName];
+                if (items.length === 0 || items.every(item => item.quantity === 0)) {
+                    // Skip categories with no items or all zero quantities
+                    continue;
+                }
+        
+                const categoryHeader = document.createElement('h3');
+                categoryHeader.classList.add('text-xl', 'font-semibold', 'mt-6', 'mb-3', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-1');
+                categoryHeader.textContent = categoryName;
+                tempDiv.appendChild(categoryHeader);
+        
+                const categoryTable = document.createElement('table');
+                categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'mb-4');
+        
+                // Table Header
+                const thead = categoryTable.createTHead();
+                const headerRow = thead.insertRow();
+                headerRow.classList.add('table-header', 'text-left');
+                const thItem = document.createElement('th');
+                thItem.classList.add('py-2', 'px-3', 'w-1/2'); // Approx 50% for Item
+                thItem.textContent = 'Item';
+                const thQuantity = document.createElement('th');
+                thQuantity.classList.add('py-2', 'px-3', 'w-1/2'); // Approx 50% for Quantity
+                thQuantity.textContent = 'Quantity';
+                headerRow.appendChild(thItem);
+                headerRow.appendChild(thQuantity);
+                categoryTable.appendChild(thead);
+        
+                // Table Body
+                const tbody = categoryTable.createTBody();
+                items.forEach((item, index) => {
+                    if (item.quantity > 0) { // Only include items with quantity > 0
+                        const row = tbody.insertRow();
+                        row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd');
+                        const tdItem = row.insertCell();
+                        tdItem.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200');
+                        tdItem.textContent = item.item;
+                        const tdQuantity = row.insertCell();
+                        tdQuantity.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200');
+                        tdQuantity.textContent = `${item.quantity} ${item.unit}`;
+                    }
+                });
+                categoryTable.appendChild(tbody);
+                tempDiv.appendChild(categoryTable);
+            }
+            return tempDiv;
         }
 
         // --- Event Listeners ---
@@ -334,3 +381,6 @@
             renderTable(); // Render table for the default category
             showSection('home'); // Ensure home section is visible by default
         });
+
+
+        
