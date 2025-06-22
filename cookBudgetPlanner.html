@@ -22,7 +22,7 @@
     <!-- Navigation Bar -->
     <nav class="header-bg p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-white text-2xl font-bold rounded-lg px-3 py-2">Cook's Aid</a>
+            <a href="#" class="text-white text-2xl font-bold rounded-lg px-3 py-2">Cook Assist</a>
             <div class="flex space-x-4">
                 <button id="home-link"
                     class="nav-link text-white font-medium px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Home</button>
@@ -36,7 +36,7 @@
     <main class="flex-grow container mx-auto p-2 md:p-8">
         <!-- Home Section -->
         <section id="home-section" class="bg-white p-2 md:p-8 rounded-lg shadow-xl mb-8">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-center mb-6 text-gray-800">Ingredient List Planner</h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-center mb-6 text-gray-800">साहित्य सूची</h1>
 
             <!-- Category Filter Buttons -->
             <div id="category-buttons" class="flex flex-wrap justify-center gap-4 mb-8">
@@ -47,9 +47,9 @@
                 <table id="ingredient-table" class="min-w-full bg-white rounded-lg shadow-md">
                     <thead>
                         <tr class="table-header text-left">
-                            <th class="py-3 px-8 rounded-tl-lg w-[55%]">Item</th>
-                            <th class="py-3 px-1 w-[100%]">Quantity</th>
-                            <th class="py-3 px-1 rounded-tr-lg w-1/10">Actions</th>
+                            <th class="py-3 px-8 rounded-tl-lg w-[55%]">आयटम </th>
+                            <th class="py-3 px-1 w-[35%]">प्रमाण </th>
+                            <th class="py-3 px-1 rounded-tr-lg w-1/10">क्रिया </th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -60,46 +60,37 @@
 
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4 mb-8">
                 <button id="add-item-btn"
-                    class="btn-secondary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Add
-                    Custom Item</button>
+                    class="btn-secondary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">नवीन आयटम जोडा</button>
             </div>
 
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
                 <button id="download-pdf-btn"
-                    class="btn-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Download
-                    as PDF</button>
+                    class="btn-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">PDF डाउनलोड करा</button>
                 <button id="download-image-btn"
-                    class="btn-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Download
-                    as Image</button>
+                    class="btn-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Image डाउनलोड करा</button>
                 <button id="share-whatsapp-btn"
-                    class="btn-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Share
-                    via WhatsApp</button>
+                    class="btn-primary text-white font-bold py-3 px-6 rounded-lg shadow-md hover:scale-105 transform transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">व्हॉट्सॲपद्वारे शेअर करा</button>
             </div>
         </section>
 
         <!-- About Section (hidden by default) -->
         <section id="about-section" class="bg-white p-8 rounded-lg shadow-xl hidden">
-            <h1 class="text-4xl font-extrabold text-center mb-6 text-gray-800">About Cook's Aid</h1>
+            <h1 class="text-4xl font-extrabold text-center mb-6 text-gray-800">About Cook Assist</h1>
             <p class="text-gray-700 mb-4 leading-relaxed">
-                Welcome to Cook's Aid, your personal assistant for managing catering ingredient lists! This web
-                application is designed specifically for cooks who provide on-demand services for various functions like
-                marriages, birthdays, devotional events, and more.
+                कूक असिस्टमध्ये आपले स्वागत आहे, केटरिंग साहित्य सूची व्यवस्थापित करण्यासाठी तुमचा वैयक्तिक सहाय्यक! हे वेब ॲप्लिकेशन विशेषतः स्वयंपाकी लोकांसाठी तयार केले आहे जे लग्न, वाढदिवस, धार्मिक कार्यक्रम आणि इतर विविध समारंभांसाठी ऑन-डिमांड सेवा प्रदान करतात.
             </p>
             <p class="text-gray-700 mb-4 leading-relaxed">
-                Our goal is to simplify the process of creating detailed ingredient lists. You can easily categorize
-                ingredients, set their required quantities, and add custom items.
+               आमचे ध्येय तपशीलवार साहित्य सूची तयार करण्याची प्रक्रिया सोपी करणे आहे. तुम्ही सहजपणे साहित्य वर्गीकृत करू शकता, त्यांची आवश्यक प्रमाणे सेट करू शकता आणि कस्टम आयटम जोडू शकता.
             </p>
             <p class="text-gray-700 leading-relaxed">
-                Once your list is ready, you can download it as a PDF or an image, or conveniently share it directly via
-                WhatsApp with your clients or team members. We hope Cook's Aid makes your planning smoother and more
-                efficient!
+               तुमची सूची तयार झाल्यावर, तुम्ही ती PDF किंवा प्रतिमा म्हणून डाउनलोड करू शकता किंवा तुमच्या क्लायंट्स किंवा टीम सदस्यांसह व्हॉट्सॲपद्वारे सहज शेअर करू शकता. आम्हाला आशा आहे की कूक असिस्ट तुमचे नियोजन अधिक सुलभ आणि कार्यक्षम करेल!
             </p>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center p-4 mt-8 rounded-t-lg">
-        <p>&copy; 2025 Cook's Aid. All rights reserved.</p>
+        <p>&copy; 2025 Cook Assist. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
