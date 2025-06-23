@@ -379,10 +379,11 @@ async function downloadImage() {
 
     const link = document.createElement('a');
     link.href = imgData;
-    link.download = 'cook_full_ingredient_list.png';
+    link.download = 'साहित्य सूची.png';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Remove temporary element
+     document.body.removeChild(contentToPrint);
 }
 
 /**
@@ -423,7 +424,7 @@ function generateAllCategoriesHtml() {
     tempDiv.style.width = '700px'; // Fixed width for consistent PDF/image generation
 
     const title = document.createElement('h2');
-    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-6', 'text-gray-800');
+    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-4', 'text-gray-800');
     title.textContent = 'साहित्य सूची';
     tempDiv.appendChild(title);
 
@@ -435,22 +436,22 @@ function generateAllCategoriesHtml() {
         }
 
         const categoryHeader = document.createElement('h3');
-        categoryHeader.classList.add('text-xl', 'font-semibold', 'mt-6', 'mb-6', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-1');
+        categoryHeader.classList.add('text-xl', 'font-semibold', 'mb-2','ml-4','mr-3', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-1');
         categoryHeader.textContent = categoryName;
         tempDiv.appendChild(categoryHeader);
 
         const categoryTable = document.createElement('table');
-        categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'mb-4', 'ml-3', 'mr-3');
+        categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'mb-1', 'ml-3', 'mr-3');
 
         // Table Header
         const thead = categoryTable.createTHead();
         const headerRow = thead.insertRow();
         headerRow.classList.add('table-header', 'text-left');
         const thItem = document.createElement('th');
-        thItem.classList.add('py-2', 'px-3', 'w-[55%]'); // Approx 50% for Item
+        thItem.classList.add('py-1', 'px-3', 'w-[55%]'); // Approx 50% for Item
         thItem.textContent = 'आयटम';
         const thQuantity = document.createElement('th');
-        thQuantity.classList.add('py-2', 'px-3', 'w-[35%]'); // Approx 50% for Quantity
+        thQuantity.classList.add('py-1', 'px-3', 'w-[35%]'); // Approx 50% for Quantity
         thQuantity.textContent = 'प्रमाण';
         headerRow.appendChild(thItem);
         headerRow.appendChild(thQuantity);
@@ -463,10 +464,10 @@ function generateAllCategoriesHtml() {
                 const row = tbody.insertRow();
                 row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd');
                 const tdItem = row.insertCell();
-                tdItem.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200', 'w-[55%]');
+                tdItem.classList.add('px-3','py-0.5', 'border-b', 'border-gray-200', 'w-[50%]');
                 tdItem.textContent = item.item;
                 const tdQuantity = row.insertCell();
-                tdQuantity.classList.add('py-2', 'px-3', 'border-b', 'border-gray-200', 'w-[55%]');
+                tdQuantity.classList.add('px-3', 'py-0.5','border-b', 'border-gray-200', 'w-[50%]');
                 tdQuantity.textContent = `${item.quantity} ${item.unit}`;
             }
         });
