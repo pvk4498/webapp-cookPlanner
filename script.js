@@ -448,10 +448,10 @@ function generateAllCategoriesHtml() {
         const headerRow = thead.insertRow();
         headerRow.classList.add('table-header', 'text-left');
         const thItem = document.createElement('th');
-        thItem.classList.add('py-1', 'px-3', 'w-[55%]'); // Approx 50% for Item
+        thItem.classList.add('py-3', 'px-3', 'w-[55%]'); // Approx 50% for Item
         thItem.textContent = 'आयटम';
         const thQuantity = document.createElement('th');
-        thQuantity.classList.add('py-1', 'px-3', 'w-[35%]'); // Approx 50% for Quantity
+        thQuantity.classList.add('py-3', 'px-3', 'w-[35%]'); // Approx 50% for Quantity
         thQuantity.textContent = 'प्रमाण';
         headerRow.appendChild(thItem);
         headerRow.appendChild(thQuantity);
