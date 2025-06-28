@@ -34,145 +34,144 @@ const unitOptions = {
         { value: 'डबी', text: 'डबी' }, // For small boxes/tins
         { value: 'बरणी', text: 'बरणी' }, // For jars
     ],
-    bundle: [ 
+    bundle: [
         { value: 'पेंडी', text: 'पेंडी' },
     ],
-    other:[
-        {value : 'other',text : ''}
+    other: [
+        { value: 'other', text: '' }
     ]
 };
 
 // --- Data Model ---
 let categories = {
     'भाजीपाला': [
-        { id: 100, item: 'कांदा', unit: 'किलो', quantity: 0 ,type : 'weight'},      
-        { id: 101, item: 'बटाटा', unit: 'किलो', quantity: 0 ,type : 'weight'},     
-        { id: 102, item: 'टोमॅटो', unit: 'किलो', quantity: 0 ,type : 'weight'},     
-        { id: 103, item: 'हिरवी मिरची', unit: 'किलो', quantity: 0 ,type : 'weight'}, 
-        { id: 104, item: 'आले', unit: 'किलो', quantity: 0 ,type : 'weight'},      
-        { id: 105, item: 'लसूण', unit: 'किलो', quantity: 0 ,type : 'weight'},     
-        { id: 106, item: 'गाजर', unit: 'किलो', quantity: 0 ,type : 'weight'},        
-        { id: 107, item: 'वांगी', unit: 'किलो', quantity: 0 ,type : 'weight'},         
-        { id: 108, item: 'दोडका', unit: 'किलो', quantity: 0 ,type : 'weight'},        
-        { id: 109, item: 'फ्लॉवर', unit: 'किलो', quantity: 0 ,type : 'weight'},       
-        { id: 110, item: 'बटाटे', unit: 'किलो', quantity: 0 ,type : 'weight'},       
-        { id: 111, item: 'ढोबळी मिरची', unit: 'किलो', quantity: 0 ,type : 'weight'},   
-        { id: 112, item: 'मटार (माफको)', unit: 'किलो', quantity: 0 ,type : 'weight'},  
-        { id: 113, item: 'शेवगा शेंगा', unit: 'किलो', quantity: 0 ,type : 'bundle'},     
-        { id: 114, item: 'काकडी', unit: 'किलो', quantity: 0 ,type : 'weight'},         
-        { id: 115, item: 'लिंबू', unit: 'नग', quantity: 0 ,type : 'weight'},          
-        { id: 116, item: 'कोथिंबीर', unit: 'किलो', quantity: 0 ,type : 'bundle'},      
-        { id: 117, item: 'कढीपत्ता', unit: 'ग्रॅम', quantity: 0 ,type : 'bundle'},       
-        { id: 118, item: 'पुदिना', unit: 'पेंडी', quantity: 0 ,type : 'bundle'},       
-        { id: 119, item: 'पालक', unit: 'किलो', quantity: 0 ,type : 'bundle'},         
+        { id: 100, item: 'कांदा', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 101, item: 'बटाटा', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 102, item: 'टोमॅटो', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 103, item: 'हिरवी मिरची', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 104, item: 'आले', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 105, item: 'लसूण', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 106, item: 'गाजर', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 107, item: 'वांगी', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 108, item: 'दोडका', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 109, item: 'फ्लॉवर', unit: 'किलो', quantity: 0, type: 'unit' },
+        { id: 111, item: 'ढोबळी मिरची', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 112, item: 'मटार (माफको)', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 113, item: 'शेवगा शेंगा', unit: 'किलो', quantity: 0, type: 'bundle' },
+        { id: 114, item: 'काकडी', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 115, item: 'लिंबू', unit: 'नग', quantity: 0, type: 'weight' },
+        { id: 116, item: 'कोथिंबीर', unit: 'किलो', quantity: 0, type: 'bundle' },
+        { id: 117, item: 'कढीपत्ता', unit: 'ग्रॅम', quantity: 0, type: 'bundle' },
+        { id: 118, item: 'पुदिना', unit: 'पेंडी', quantity: 0, type: 'bundle' },
+        { id: 119, item: 'पालक', unit: 'किलो', quantity: 0, type: 'bundle' },
     ],
     'किराणा': [
-        { id: 32, item: 'जायफळ', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 33, item: 'वेलदोडे', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 34, item: 'केशरी रंग (डबी)', unit: 'डबी', quantity: 0 ,type : 'pack'}, 
-        { id: 35, item: 'खायचा सोडा', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 36, item: 'ओवा', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 37, item: 'सुंठ पावडर', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 38, item: 'बडीशेप', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 39, item: 'खसखस', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 40, item: 'हिंग (डबी)', unit: 'डबी', quantity: 0,type : 'pack' }, 
-        { id: 41, item: 'मोठे मीठ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 42, item: 'बारीक मीठ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 43, item: 'हळद', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 44, item: 'जिरे', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 45, item: 'तीळ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 46, item: 'मगज बी', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 47, item: 'धने पावडर', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 48, item: 'कसुरी मेथी', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 49, item: 'मोहरी', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 50, item: 'काळी मिरी', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 51, item: 'लवंग', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 52, item: 'दालचिनी', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 53, item: 'तमालपत्र', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 54, item: 'जायपत्री', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 55, item: 'मसाले वेलदोडे', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 56, item: 'सांबर मसाला (MTR)', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 57, item: 'गरम मसाला (MTR)', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 58, item: 'बिर्याणी मसाला', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 59, item: 'गोडा मसाला', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 60, item: 'पुलाव मसाला', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 61, item: 'पनीर मसाला', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 62, item: 'चाट मसाला', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 63, item: 'जिरा पावडर', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 64, item: 'गुळ', unit: 'किलो', quantity: 0 ,type : 'weight'}, 
-        { id: 65, item: 'खोबरे किस', unit: 'ग्रॅम', quantity: 0 ,type : 'weight'},
-        { id: 66, item: 'भाजके शेंगदाणे', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 67, item: 'चारमिनार चटणी', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 68, item: 'लिंबू अर्क', unit: 'मिलीलीटर', quantity: 0,type : 'liquid' },
-        { id: 69, item: 'टोमॅटो सॉस', unit: 'पॅक', quantity: 0 ,type : 'pack'},
-        { id: 70, item: 'लोणचे', unit: 'बरणी', quantity: 0 ,type : 'pack'}, 
-        { id: 71, item: 'कस्टर्ड पावडर', unit: 'पॅक', quantity: 0 ,type : 'weight'},
-        { id: 72, item: 'चहा पावडर', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 73, item: 'रवा', unit: 'किलो', quantity: 0 ,type : 'weight'}, 
-        { id: 74, item: 'शेवया', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 75, item: 'तांदूळ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 76, item: 'तूर डाळ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 77, item: 'मूग डाळ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 78, item: 'उडीद डाळ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 79, item: 'फुटणे डाळ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 80, item: 'चिंच', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 81, item: 'बेसन', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 82, item: 'सुजी', unit: 'किलो', quantity: 0 ,type : 'weight'}, 
-        { id: 83, item: 'खपली गहू', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 84, item: 'घवाचे पीठ', unit: 'किलो', quantity: 0,type : 'weight' }, 
-        { id: 85, item: 'मैदा', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 86, item: 'नाचणी पीठ', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 87, item: 'मटकी', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 88, item: 'मसूर', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 89, item: 'मुग', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 90, item: 'तूप', unit: 'लिटर', quantity: 0,type : 'liquid' },
-        { id: 91, item: 'तेल', unit: 'लिटर', quantity: 0 ,type : 'liquid'},
-        { id: 92, item: 'खारीक', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 93, item: 'काजू', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 94, item: 'बदाम', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 95, item: 'बेदाणे', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 96, item: 'चारोळी', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 97, item: 'पत्रावळी', unit: 'नग', quantity: 0,type : 'bundle' }, 
-        { id: 98, item: 'चमचा', unit: 'नग', quantity: 0,type : 'bundle' },
-        { id: 99, item: 'नास्ता प्लेट', unit: 'नग', quantity: 0,type : 'bundle' },
+        { id: 32, item: 'जायफळ', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 33, item: 'वेलदोडे', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 34, item: 'केशरी रंग (डबी)', unit: 'डबी', quantity: 0, type: 'pack' },
+        { id: 35, item: 'खायचा सोडा', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 36, item: 'ओवा', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 37, item: 'सुंठ पावडर', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 38, item: 'बडीशेप', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 39, item: 'खसखस', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 40, item: 'हिंग (डबी)', unit: 'डबी', quantity: 0, type: 'pack' },
+        { id: 41, item: 'मोठे मीठ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 42, item: 'बारीक मीठ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 43, item: 'हळद', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 44, item: 'जिरे', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 45, item: 'तीळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 46, item: 'मगज बी', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 47, item: 'धने पावडर', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 48, item: 'कसुरी मेथी', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 49, item: 'मोहरी', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 50, item: 'काळी मिरी', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 51, item: 'लवंग', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 52, item: 'दालचिनी', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 53, item: 'तमालपत्र', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 54, item: 'जायपत्री', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 55, item: 'मसाले वेलदोडे', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 56, item: 'सांबर मसाला (MTR)', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 57, item: 'गरम मसाला (MTR)', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 58, item: 'बिर्याणी मसाला', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 59, item: 'गोडा मसाला', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 60, item: 'पुलाव मसाला', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 61, item: 'पनीर मसाला', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 62, item: 'चाट मसाला', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 63, item: 'जिरा पावडर', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 64, item: 'गुळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 65, item: 'खोबरे किस', unit: 'ग्रॅम', quantity: 0, type: 'weight' },
+        { id: 66, item: 'भाजके शेंगदाणे', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 67, item: 'चारमिनार चटणी', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 68, item: 'लिंबू अर्क', unit: 'मिलीलीटर', quantity: 0, type: 'liquid' },
+        { id: 69, item: 'टोमॅटो सॉस', unit: 'पॅक', quantity: 0, type: 'pack' },
+        { id: 70, item: 'लोणचे', unit: 'बरणी', quantity: 0, type: 'pack' },
+        { id: 71, item: 'कस्टर्ड पावडर', unit: 'पॅक', quantity: 0, type: 'weight' },
+        { id: 72, item: 'चहा पावडर', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 73, item: 'रवा', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 74, item: 'शेवया', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 75, item: 'तांदूळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 76, item: 'तूर डाळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 77, item: 'मूग डाळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 78, item: 'उडीद डाळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 79, item: 'फुटणे डाळ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 80, item: 'चिंच', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 81, item: 'बेसन', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 82, item: 'सुजी', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 83, item: 'खपली गहू', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 84, item: 'घवाचे पीठ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 85, item: 'मैदा', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 86, item: 'नाचणी पीठ', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 87, item: 'मटकी', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 88, item: 'मसूर', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 89, item: 'मुग', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 90, item: 'तूप', unit: 'लिटर', quantity: 0, type: 'liquid' },
+        { id: 91, item: 'तेल', unit: 'लिटर', quantity: 0, type: 'liquid' },
+        { id: 92, item: 'खारीक', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 93, item: 'काजू', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 94, item: 'बदाम', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 95, item: 'बेदाणे', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 96, item: 'चारोळी', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 97, item: 'पत्रावळी', unit: 'नग', quantity: 0, type: 'bundle' },
+        { id: 98, item: 'चमचा', unit: 'नग', quantity: 0, type: 'bundle' },
+        { id: 99, item: 'नास्ता प्लेट', unit: 'नग', quantity: 0, type: 'bundle' },
     ],
     'डेअरी': [
-        { id: 23, item: 'खवा', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 24, item: 'दूध', unit: 'लिटर', quantity: 0 ,type : 'liquid'},
-        { id: 25, item: 'बटर', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 26, item: 'पनीर', unit: 'किलो', quantity: 0 ,type : 'weight'},
-        { id: 27, item: 'फ्रूटखंड', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 28, item: 'आम्रखंड', unit: 'किलो', quantity: 0,type : 'weight' },
-        { id: 29, item: 'बासुंदी', unit: 'लिटर', quantity: 0 ,type : 'liquid'},
-        { id: 30, item: 'दही', unit: 'किलो', quantity: 0 ,type : 'liquid'},
-        { id: 31, item: 'मिल्क क्रीम', unit: 'किलो', quantity: 0 ,type : 'liquid'},
+        { id: 23, item: 'खवा', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 24, item: 'दूध', unit: 'लिटर', quantity: 0, type: 'liquid' },
+        { id: 25, item: 'बटर', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 26, item: 'पनीर', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 27, item: 'फ्रूटखंड', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 28, item: 'आम्रखंड', unit: 'किलो', quantity: 0, type: 'weight' },
+        { id: 29, item: 'बासुंदी', unit: 'लिटर', quantity: 0, type: 'liquid' },
+        { id: 30, item: 'दही', unit: 'किलो', quantity: 0, type: 'liquid' },
+        { id: 31, item: 'मिल्क क्रीम', unit: 'किलो', quantity: 0, type: 'liquid' },
     ],
     'भांडी': [
-        { id: 1, item: 'पातेले 05 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 2, item: 'पातेले 10 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 3, item: 'पातेले 15 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 4, item: 'पातेले 20 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 5, item: 'पातेले 30 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 6, item: 'पातेले 40 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 7, item: 'पातेले 50 कि', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 8, item: 'स्टील बकेट', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 9, item: 'स्टील बुट्टी', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 10, item: 'बर्डी', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 11, item: 'दांडा पातेले', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 12, item: 'वगराळे', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 13, item: 'भात वाडी', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 14, item: 'पंचपाळ', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 15, item: 'मोठी परात', unit: 'नग', quantity: 0,type : 'unit' },
-        { id: 16, item: 'कढई', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 17, item: 'ताट', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 18, item: 'वाटी', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 19, item: 'ग्लास', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 20, item: 'द्रोण', unit: 'नग', quantity: 0 ,type : 'unit'},
-        { id: 21, item: 'पोळपाट लाटणे', unit: 'सेट', quantity: 0,type : 'unit' }, 
-        { id: 22, item: 'उलतने', unit: 'नग', quantity: 0,type : 'unit' },
+        { id: 1, item: 'पातेले 05 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 2, item: 'पातेले 10 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 3, item: 'पातेले 15 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 4, item: 'पातेले 20 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 5, item: 'पातेले 30 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 6, item: 'पातेले 40 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 7, item: 'पातेले 50 कि', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 8, item: 'स्टील बकेट', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 9, item: 'स्टील बुट्टी', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 10, item: 'बर्डी', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 11, item: 'दांडा पातेले', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 12, item: 'वगराळे', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 13, item: 'भात वाडी', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 14, item: 'पंचपाळ', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 15, item: 'मोठी परात', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 16, item: 'कढई', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 17, item: 'ताट', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 18, item: 'वाटी', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 19, item: 'ग्लास', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 20, item: 'द्रोण', unit: 'नग', quantity: 0, type: 'unit' },
+        { id: 21, item: 'पोळपाट लाटणे', unit: 'सेट', quantity: 0, type: 'unit' },
+        { id: 22, item: 'उलतने', unit: 'नग', quantity: 0, type: 'unit' },
     ],
-    'इतर' : [
-         { id: 120, item: 'बर्फ', unit: 'नग', quantity: 0 },
+    'इतर': [
+        { id: 120, item: 'बर्फ', unit: 'नग', quantity: 0 },
     ]
 };
 
@@ -255,11 +254,11 @@ function renderTable() {
 
         row.innerHTML = `
             <td class="py-3 px-1 border-b border-gray-200 w-[55%]">
-                <input type="text" value="${item.item}" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 item-input" data-field="item">
+                <input type="text" value="${item.item}" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 item-input" data-field="item"  readonly>
             </td>
             <td class="py-3 px-1 border-b border-gray-200 flex items-center space-x-2 w-[100%]">
-                <input type="number" step="0.01" value="${item.quantity}" class="w-[50%] p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 quantity-input" data-field="quantity">
-                <select class="w-[100%] p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 unit-input" data-field="unit">
+                <input type="number" step="0.01" value="${item.quantity}" class="w-[50%] p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 quantity-input" data-field="quantity" onfocus="if(this.value === '0') this.value='';" onblur="if(this.value === '') this.value='0';" >
+                <select class="w-[100%] p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-800 unit-input" data-field="unit" >
                     ${unitsHtml}
                 </select>
             </td>
@@ -345,7 +344,7 @@ async function downloadPdf() {
     document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
 
     const doc = new jsPDF('p', 'pt', 'a4');
-    const canvas = await html2canvas(contentToPrint, { scale: 2 });
+    const canvas = await html2canvas(contentToPrint, { scale: 1.5 });
     const imgData = canvas.toDataURL('image/png');
 
     const imgWidth = 595.28;
@@ -374,7 +373,7 @@ async function downloadImage() {
     const contentToPrint = generateAllCategoriesHtml();
     document.body.appendChild(contentToPrint); // Temporarily add to DOM for html2canvas
 
-    const canvas = await html2canvas(contentToPrint, { scale: 2 });
+    const canvas = await html2canvas(contentToPrint, { scale: 1.5 });
     const imgData = canvas.toDataURL('image/png');
 
     const link = document.createElement('a');
@@ -383,7 +382,7 @@ async function downloadImage() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Remove temporary element
-     document.body.removeChild(contentToPrint);
+    document.body.removeChild(contentToPrint);
 }
 
 /**
@@ -418,62 +417,113 @@ function shareWhatsapp() {
     window.open(whatsappUrl, '_blank');
 }
 
+// script.js - inside the generateAllCategoriesHtml() function
+
 function generateAllCategoriesHtml() {
     const tempDiv = document.createElement('div');
-    tempDiv.classList.add('p-6', 'bg-white', 'rounded-lg', 'shadow-xl'); // Basic styling for the container
-    tempDiv.style.width = '700px'; // Fixed width for consistent PDF/image generation
+    // Main container for the PDF/Image output. Use padding for internal spacing.
+    tempDiv.classList.add('p-6', 'bg-white', 'rounded-lg', 'shadow-xl');
+    tempDiv.style.width = '700px'; // Fixed overall width for PDF/image consistency
 
     const title = document.createElement('h2');
-    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-4', 'text-gray-800');
-    title.textContent = 'साहित्य सूची';
+    title.classList.add('text-2xl', 'font-bold', 'text-center', 'mb-6', 'text-gray-800', 'w-full');
+    title.textContent = 'एकत्रित साहित्य सूची'; // Consolidated Ingredient List in Marathi
     tempDiv.appendChild(title);
 
-    for (const categoryName in categories) {
+    // Create two column containers
+    const leftColumn = document.createElement('div');
+    leftColumn.style.width = '340px'; // Fixed width for each column
+    leftColumn.classList.add('pr-2'); // Reduced padding to the right for spacing
+
+    const rightColumn = document.createElement('div');
+    rightColumn.style.width = '340px'; // Fixed width for each column
+    rightColumn.classList.add('pl-2'); // Reduced padding to the left for spacing
+
+    // Create a flex container to hold both columns side-by-side
+    const columnsContainer = document.createElement('div');
+    columnsContainer.classList.add('flex', 'justify-between', 'items-start'); // align items to start for top alignment
+    tempDiv.appendChild(columnsContainer); // Append this container to tempDiv
+
+    // Get an array of category names that have items with quantity > 0
+    const activeCategories = Object.keys(categories).filter(categoryName => {
         const items = categories[categoryName];
-        if (items.length === 0 || items.every(item => item.quantity === 0)) {
-            // Skip categories with no items or all zero quantities
-            continue;
-        }
+        return items.length > 0 && items.some(item => item.quantity > 0);
+    });
+
+    // Sort categories based on the number of items (as a proxy for height)
+    // This helps distribute content more evenly
+    activeCategories.sort((a, b) => categories[b].filter(item => item.quantity > 0).length - categories[a].filter(item => item.quantity > 0).length);
+
+
+    // Distribute categories to columns based on current content height/count
+    let leftColumnHeight = 0; // Using count as a proxy for height
+    let rightColumnHeight = 0;
+
+    activeCategories.forEach((categoryName) => {
+        const items = categories[categoryName];
+        const categoryItemCount = items.filter(item => item.quantity > 0).length;
+
+        const categoryContentDiv = document.createElement('div'); // Container for header and table for each category
+        categoryContentDiv.classList.add('mb-4'); // Reduced margin below each category block
 
         const categoryHeader = document.createElement('h3');
-        categoryHeader.classList.add('text-xl', 'font-semibold', 'mb-2','ml-4','mr-3', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-1');
+        categoryHeader.classList.add('text-lg', 'font-semibold', 'mb-1', 'text-blue-700', 'border-b-2', 'border-blue-300', 'pb-0.5'); // Reduced margin-bottom and padding-bottom
         categoryHeader.textContent = categoryName;
-        tempDiv.appendChild(categoryHeader);
+        categoryContentDiv.appendChild(categoryHeader);
 
         const categoryTable = document.createElement('table');
-        categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'mb-1', 'ml-3', 'mr-3');
+        // Applying the border styles to the table itself
+        categoryTable.classList.add('min-w-full', 'bg-white', 'rounded-lg', 'shadow-md', 'table-fixed', 'border-collapse', 'border', 'border-black');
 
         // Table Header
         const thead = categoryTable.createTHead();
         const headerRow = thead.insertRow();
         headerRow.classList.add('table-header', 'text-left');
         const thItem = document.createElement('th');
-        thItem.classList.add('py-3', 'px-3', 'w-[55%]'); // Approx 50% for Item
-        thItem.textContent = 'आयटम';
+        // Applying border styles and reduced padding to table header cells
+        thItem.classList.add('py-1', 'px-2', 'w-[55%]', 'border', 'border-black'); // Reduced py-2 to py-1, px-3 to px-2
+        thItem.textContent = 'आयटम'; // Item in Marathi
         const thQuantity = document.createElement('th');
-        thQuantity.classList.add('py-3', 'px-3', 'w-[35%]'); // Approx 50% for Quantity
-        thQuantity.textContent = 'प्रमाण';
+        // Applying border styles and reduced padding to table header cells
+        thQuantity.classList.add('py-1', 'px-2', 'w-[45%]', 'border', 'border-black'); // Reduced py-2 to py-1, px-3 to px-2
+        thQuantity.textContent = 'प्रमाण'; // Quantity in Marathi
         headerRow.appendChild(thItem);
         headerRow.appendChild(thQuantity);
         categoryTable.appendChild(thead);
 
         // Table Body
         const tbody = categoryTable.createTBody();
-        items.forEach((item, index) => {
+        items.forEach((item, itemIndex) => {
             if (item.quantity > 0) { // Only include items with quantity > 0
                 const row = tbody.insertRow();
-                row.classList.add(index % 2 === 0 ? 'table-row-even' : 'table-row-odd');
+                // No alternating row background classes for PDF/Image generation for solid white background
                 const tdItem = row.insertCell();
-                tdItem.classList.add('px-3','py-0.5', 'border-b', 'border-gray-200', 'w-[50%]');
+                // Applying border styles and reduced padding to table data cells
+                tdItem.classList.add('py-1', 'px-2', 'border-b', 'border-gray-200', 'border', 'border-black'); // Reduced py-2 to py-1, px-3 to px-2
                 tdItem.textContent = item.item;
                 const tdQuantity = row.insertCell();
-                tdQuantity.classList.add('px-3', 'py-0.5','border-b', 'border-gray-200', 'w-[50%]');
+                // Applying border styles and reduced padding to table data cells
+                tdQuantity.classList.add('py-1', 'px-2', 'border-b', 'border-gray-200', 'border', 'border-black'); // Reduced py-2 to py-1, px-3 to px-2
                 tdQuantity.textContent = `${item.quantity} ${item.unit}`;
             }
         });
         categoryTable.appendChild(tbody);
-        tempDiv.appendChild(categoryTable);
-    }
+        categoryContentDiv.appendChild(categoryTable); // Append table to its content div
+
+        // Append to the shorter column
+        if (leftColumnHeight <= rightColumnHeight) {
+            leftColumn.appendChild(categoryContentDiv);
+            leftColumnHeight += categoryItemCount; // Add item count to height proxy
+        } else {
+            rightColumn.appendChild(categoryContentDiv);
+            rightColumnHeight += categoryItemCount; // Add item count to height proxy
+        }
+    });
+
+    // Append the two columns to their container
+    columnsContainer.appendChild(leftColumn);
+    columnsContainer.appendChild(rightColumn);
+
     return tempDiv;
 }
 
